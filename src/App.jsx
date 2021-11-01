@@ -1,10 +1,28 @@
 import React from 'react';
-import './App.css';
+import { Input } from './Input'
+import { Button } from './Button';
+import { WeatherHOC } from './WeatherComponent'
 
-export function App() {
-  return (
-    <div className="App">
+export class App extends React.Component {
+  state = {
+    value: "",
+  }
 
-    </div>
-  );
+
+  onChange = (event) => {
+    this.setState({ value: event.target.value })
+  }
+
+  render() {
+    return (
+      <div>
+        <div>
+          <Input value={ this.props.value } onChange={ this.props.onChange } /> <Button>Some button</Button>
+        </div>
+        <div>
+          <WeatherHOC />
+        </div>
+      </div>
+    )
+  }
 }
