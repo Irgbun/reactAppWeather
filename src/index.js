@@ -12,7 +12,8 @@ class WeatherComponent extends React.Component {
 
     getData = () => {
         const { fetchData } = this.props
-        fetchData({ ...this.state, appId: "" })
+        const token = process.env.REACT_APP_OPEN_WEATHER_TOKEN
+        fetchData({ ...this.state, appId: token })
     }
 
     componentDidMount() {
@@ -35,7 +36,7 @@ class WeatherComponent extends React.Component {
     }
 }
 
-const weatherAPIURL = "process.env.REACT_APP_OPEN_WEATHER_TOKEN"
+const weatherAPIURL = "https://api.openweathermap.org/data/2.5/weather"
 
 const WeatherHOC = WithFetch(WeatherComponent, weatherAPIURL)
 
