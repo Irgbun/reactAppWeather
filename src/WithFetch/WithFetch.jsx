@@ -4,7 +4,7 @@ import React from 'react';
 
 
 export const WithFetch = (Component, url) => {
-    class SomeClass extends React.Component {
+    return (class SomeClass extends React.Component {
         state = {
             data: [],
             isError: false,
@@ -20,13 +20,16 @@ export const WithFetch = (Component, url) => {
                     }
                     throw new Error('Не работает!')
                 })
-                .then(([data]) => {
+                .then((data) => {
                     this.setState({ data })
+                },
+                (error) => {
+                    new Error('Не работает!')
                 })
-                .catch(() => {
+                .catch((el) => {
                     this.setState({ isError: true })
                 })
-                .finaly(() => {
+                .finally(() => {
                     this.setState({ isLoading: false })
                 })
         }
@@ -45,5 +48,5 @@ export const WithFetch = (Component, url) => {
                 />
             )
         }
-    }
+    })
 }

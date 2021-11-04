@@ -8,7 +8,7 @@ class WeatherComponent extends React.Component {
     state = {
         q: "",
         unit: "",
-        value: "",
+        appId: "",
     }
 
     getData = () => {
@@ -37,6 +37,6 @@ class WeatherComponent extends React.Component {
     }
 }
 
-const weatherAPIURL = "https://api.openweathermap.org/data/2.5/weather"
+const weatherAPIURL = "https://api.openweathermap.org/data/2.5/weather?appid=token&q=Minsk&units=metric"
 
 export const WeatherHOC = WithFetch(WeatherComponent, weatherAPIURL)
