@@ -1,7 +1,7 @@
 import React from 'react';
 import { Input } from './Input'
 import { Button } from './Button';
-// import { WeatherHOC } from './WeatherComponent'
+import { WeatherHOC } from './WeatherComponent'
 import { Table } from "./Table";
 
 export class App extends React.Component {
@@ -12,9 +12,12 @@ export class App extends React.Component {
           <Input /> <Button>Some button</Button>
         </div>
         <div>
-          <Table />
+          <WeatherHOC  /> 
         </div>
       </div>
     )
   }
 }
+
+
+// isError={ this.state.isError } isLoading={ this.state.isLoading }
