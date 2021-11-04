@@ -1,7 +1,6 @@
 import React from 'react';
 
-
-// const URLParamsSearch = new URLSearchParams({ q: 'minsk', units: 'metric', appid: 'process.env.REACT_APP_OPEN_WEATHER_TOKEN' }).toString()
+// const URLParamsSearch = new URLSearchParams({ q: { this.props.q }}, units: { this.props.units }}, appid: {this.props.token} }).toString()
 
 
 export const WithFetch = (Component, url) => {

@@ -1,0 +1,1 @@
+export { WeatherHOC } from './WeatherComponent'
