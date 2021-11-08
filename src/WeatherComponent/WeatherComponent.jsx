@@ -12,14 +12,15 @@ class WeatherComponent extends React.Component {
         appId: "",
     }
 
-    onChange = (event) => {
-        this.setState({ q: event.target.q });
-      };
-
     getData = () => {
         const { fetchData } = this.props
         const token = process.env.REACT_APP_OPEN_WEATHER_TOKEN
-        fetchData({ ...this.state, appId: token })
+        const searchParams = new URLSearchParams({
+            q: this.state.q,
+            units: this.state.units,
+            appId: token
+          }).toString();
+        fetchData({ ...this.state, appId: token, searchParams })
     }
 
     componentDidMount() {
@@ -33,14 +34,12 @@ class WeatherComponent extends React.Component {
       }
 
     render() {
-        const { isError, isLoading, isLoaded, data } = this.props;
+        const { isError, isLoading, data } = this.props;
         return (
             <div>
-                <Input value={ this.state.q } onChange={ this.onChange } />
-                {console.log(this.state)}
                 {isError && <p>Что-то пошло не так</p>}
                 {isLoading && !isError && <p>Загрузка</p>}
-                {!isLoading && !isError && isLoaded && <Table data={data} />}
+                {!isLoading && !isError && <Table data={data} />}
             </div>
         )
     }
