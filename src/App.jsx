@@ -8,14 +8,14 @@ export class App extends React.Component {
   };
 
   changeSerchValue = (event) => {
-    this.setState({ searchValue: event.target.searchValue });
+    this.setState({ searchValue: event.target.value });
   };
 
   render() {
     return (
       <div>
         <Input value={this.state.searchValue} onChange={this.changeSerchValue} />
-        <WeatherHOC />
+        <WeatherHOC searchValue={ this.state.searchValue } />
       </div>
     )
   }

@@ -1,5 +1,5 @@
 import React from "react";
 
-export function Input(props) {
-    return <input type="text" value={ props.value } onChange={ props.onChange } />
+export function Input({value, onChange}) {
+    return <input type="text" value={ value } onChange={ onChange } />
 }

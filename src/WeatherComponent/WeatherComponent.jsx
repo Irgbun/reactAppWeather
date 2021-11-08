@@ -1,7 +1,6 @@
 import React from 'react';
 import { WithFetch } from '../WithFetch'
 import { Table } from '../Table'
-import { Input } from '../Input'
 
 
 
@@ -16,7 +15,7 @@ class WeatherComponent extends React.Component {
         const { fetchData } = this.props
         const token = process.env.REACT_APP_OPEN_WEATHER_TOKEN
         const searchParams = new URLSearchParams({
-            q: this.state.q,
+            q: this.props.searchValue,
             units: this.state.units,
             appId: token
           }).toString();
