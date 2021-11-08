@@ -8,12 +8,18 @@ export const WithFetch = (Component, url) => {
         state = {
             data: [],
             isError: false,
-            isLoading: false
+            isLoading: false,
+            isLoaded: false,
         }
 
-        getData = () => {
+        getData = (params = []) => {
             this.setState({ isLoading: true })
-            fetch(url)
+            const par = new URLSearchParams({
+                q: params.q,
+                units: params.units,
+                appId: params.appId
+              }).toString();
+            fetch(`${url}?${par}`)
                 .then((resp) => {
                     if (resp.ok) {
                         return resp.json()
@@ -23,28 +29,26 @@ export const WithFetch = (Component, url) => {
                 .then((data) => {
                     this.setState({ data })
                 },
-                (error) => {
-                    new Error('Не работает!')
-                })
-                .catch((el) => {
+                    (error) => {
+                        new Error('Не работает! Ошибка!')
+                    })
+                .catch(() => {
                     this.setState({ isError: true })
                 })
                 .finally(() => {
-                    this.setState({ isLoading: false })
+                    this.setState({ isLoading: false, isLoaded: true })
                 })
-        }
-
-        componentDidMount() {
-            this.getData()
         }
 
         render() {
             return (
                 <Component
-                isLoading={ this.state.isLoading }
-                isError={ this.state.isError }
-                data={ this.state.data }
-                {...this.props}
+                    isLoading={this.state.isLoading}
+                    isError={this.state.isError}
+                    isLoaded={this.state.isLoaded}
+                    data={this.state.data}
+                    fetchData={this.getData}
+                    {...this.props}
                 />
             )
         }
